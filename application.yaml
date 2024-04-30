@@ -1,1 +1,27 @@
-applicationName: Bookkeeper
+# Database
+database: h2
+
+# Sql Scripts
+spring.sql.init:
+  schemaLocations: classpath*:db/${database}/schema.sql
+  dataLocations: classpath*:db/${database}/data.sql
+
+# JPA - DDL Query
+spring.jpa:
+  hibernate.ddl-auto: update
+  open-in-view: true
+
+# Logging
+logging:
+  level:
+    org.hibernate.SQL: info
+
+
+# Host
+accountService:
+  client:
+    serviceUri: ${ACCOUNT_SERVICE_URI:http://localhost:8080/}
+
+productService:
+  client:
+    serviceUri: ${PRODUCT_SERVICE_URI:http://localhost:8082/}
